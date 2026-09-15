@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSR REALTY | Modern Independent House</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f7f8fa;line-height:1.6}
+    header{position:sticky;top:0;z-index:20;background:#0d1726;color:#fff;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 15px #0002}
+    .logo{font-size:24px;font-weight:800;letter-spacing:1px}.logo span{color:#f2b84b}
+    nav a{color:#fff;text-decoration:none;margin-left:22px;font-size:14px}
+    .hero{min-height:78vh;background:linear-gradient(90deg,#07101dcc,#07101d55),url("property-front.jpg") center/cover;display:flex;align-items:center;padding:70px 7%;color:#fff}
+    .hero-content{max-width:700px}.tag{display:inline-block;background:#f2b84b;color:#111;padding:7px 13px;border-radius:20px;font-weight:700;font-size:13px;margin-bottom:18px}
+    h1{font-size:clamp(40px,6vw,72px);line-height:1.05;margin-bottom:18px}
+    .hero p{font-size:19px;max-width:600px;color:#eee;margin-bottom:28px}
+    .btn{display:inline-block;background:#f2b84b;color:#111;text-decoration:none;border:0;padding:14px 22px;border-radius:9px;font-weight:800;cursor:pointer}
+    .btn.dark{background:#0d1726;color:#fff}.btn.whatsapp{background:#25D366;color:#fff}
+    section{padding:70px 7%}.section-title{text-align:center;margin-bottom:35px}.section-title h2{font-size:36px}.section-title p{color:#697386}
+    .property{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 35px #17203314;display:grid;grid-template-columns:1.1fr 1fr;max-width:1150px;margin:auto}
+    .property-main{position:relative}.property-main img{width:100%;height:100%;min-height:480px;object-fit:cover}
+    .price{position:absolute;left:20px;bottom:20px;background:#0d1726;color:#fff;padding:10px 15px;border-radius:9px;font-weight:800}
+    .details{padding:38px}.details h3{font-size:31px;margin-bottom:8px}.location{color:#697386;margin-bottom:22px}
+    .features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0}.feature{background:#f4f6f8;padding:13px;border-radius:10px}
+    .gallery{display:grid;grid-template-columns:2fr 1fr;gap:14px;max-width:1150px;margin:35px auto 0}
+    .gallery img{width:100%;height:260px;object-fit:cover;border-radius:14px}.gallery img:first-child{height:534px;grid-row:span 2}
+    .contact{background:#0d1726;color:#fff;text-align:center}.contact p{color:#cdd4df;margin:10px auto 25px;max-width:650px}
+    footer{background:#080f1a;color:#9da8b8;text-align:center;padding:22px;font-size:13px}
+    .modal{display:none;position:fixed;inset:0;background:#0009;z-index:50;align-items:center;justify-content:center;padding:20px}
+    .modal-box{background:#fff;width:min(500px,100%);border-radius:16px;padding:30px;position:relative}
+    .close{position:absolute;right:18px;top:12px;font-size:28px;cursor:pointer}.modal-box h2{margin-bottom:8px}
+    input,select,textarea{width:100%;padding:12px;margin:8px 0 14px;border:1px solid #ccd2da;border-radius:8px;font:inherit}
+    @media(max-width:800px){header{padding:14px 5%}nav a{margin-left:10px}.hero{min-height:70vh;padding:55px 6%}.property{grid-template-columns:1fr}.property-main img{min-height:300px}.details{padding:28px}.gallery{grid-template-columns:1fr}.gallery img:first-child{height:300px;grid-row:auto}.gallery img{height:230px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">NSR <span>REALTY</span></div>
+  <nav><a href="#property">Property</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="tag">PREMIUM INDEPENDENT HOUSE</div>
+    <h1>Find Your Next Property</h1>
+    <p>Discover a beautiful modern independent house in Registration Colony, Sainikpuri, Secunderabad.</p>
+    <a class="btn" href="#property">View Property</a>
+  </div>
+</section>
+
+<section id="property">
+  <div class="section-title">
+    <h2>Featured Property</h2>
+    <p>Available through NSR REALTY</p>
+  </div>
+  <div id="propertyList">
+    <p>Loading properties...</p>
+</div>
+</section>
+
+<section id="gallery">
+  <div class="section-title">
+    <h2>Property Gallery</h2>
+    <p>Take a closer look at the home</p>
+  </div>
+  <div class="gallery">
+    <img src="property-front.jpg" alt="Front exterior">
+    <img src="property-interior.jpg" alt="Interior and kitchen">
+    <img src="property-balcony.jpg" alt="Balcony">
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="section-title">
+    <h2>Schedule a Private Viewing</h2>
+    <p>Choose a convenient time and send your enquiry to NSR REALTY. We'll get back to you to confirm the appointment.</p>
+  </div>
+  <button class="btn" onclick="openBooking()">Request a Viewing</button>
+  <a class="btn whatsapp" style="margin-left:8px" target="_blank" href="https://wa.me/917842600640?text=Hi%20NSR%20REALTY%2C%20I%27d%20like%20to%20schedule%20a%20property%20viewing.">Chat on WhatsApp</a>
+</section>
+
+<footer>© 2026 NSR REALTY • Property Sales & Viewings</footer>
+
+<div class="modal" id="bookingModal">
+  <div class="modal-box">
+    <span class="close" onclick="closeBooking()">×</span>
+    <h2>Book a Viewing</h2>
+    <p>Send your preferred details directly to NSR REALTY on WhatsApp.</p>
+    <input id="name" placeholder="Your name">
+    <input id="date" type="date">
+    <select id="time">
+      <option value="">Preferred time</option>
+      <option>10:00 AM</option><option>12:00 PM</option><option>2:00 PM</option>
+      <option>4:00 PM</option><option>6:00 PM</option>
+    </select>
+    <textarea id="message" rows="3" placeholder="Any questions? (optional)"></textarea>
+    <button class="btn whatsapp" style="width:100%" onclick="sendWhatsApp()">Send Booking Request</button>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://caeflnccohemohswxxdw.supabase.co";
+const SUPABASE_KEY = "sb_publishable_oQLcr_8y6KYItpNGFRgH0Q_hAcpapmF";
+
+const sb = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+function openBooking() {
+    document.getElementById("bookingModal").style.display = "flex";
+}
+
+function closeBooking() {
+    document.getElementById("bookingModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("bookingModal");
+
+    if (event.target === modal) {
+        closeBooking();
+    }
+};
+
+async function sendWhatsApp() {
+    const name = document.getElementById("name").value.trim();
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+    const msg = document.getElementById("message").value.trim();
+
+    if (!name || !date || !time) {
+        alert("Please enter your name, date and preferred time.");
+        return;
+    }
+
+    try {
+        const { data: property, error: propertyError } = await sb
+            .from("properties")
+            .select("id")
+            .eq("name", "Independent Duplex House")
+            .single();
+
+        if (propertyError) throw propertyError;
+
+        const { error: bookingError } = await sb
+            .from("bookings")
+            .insert({
+                property_id: property.id,
+                slot_id: null,
+                name: name,
+                phone: "",
+                email: "",
+                message: msg + "\npreferred date: " + date + "\npreferred time: " + time,
+                status: "pending"
+            });
+
+        if (bookingError) throw bookingError;
+
+        const text =
+            "Hi NSR REALTY,%0A%0A" +
+            "I'd like to book a viewing for the Independent Duplex House.%0A" +
+            "Name: " + encodeURIComponent(name) + "%0A" +
+            "Preferred Date: " + encodeURIComponent(date) + "%0A" +
+            "Preferred Time: " + encodeURIComponent(time) + "%0A" +
+            "Message: " + encodeURIComponent(msg);
+
+        window.open(
+            "https://wa.me/917842600640?text=" + text,
+            "_blank"
+        );
+
+        alert("Booking request saved successfully!");
+
+    } catch (error) {
+        console.error(error);
+        alert("Could not save: " + error.message);
+    }
+}
+async function loadProperties() {
+    const propertyList = document.getElementById("propertyList");
+
+    const { data, error } = await sb
+        .from("properties")
+        .select("*")
+        .eq("active", true);
+
+    if (error) {
+        console.error("Property loading error:", error);
+        propertyList.innerHTML = "<p>Unable to load properties.</p>";
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        propertyList.innerHTML = "<p>No properties available right now.</p>";
+        return;
+    }
+
+    propertyList.innerHTML = "";
+
+    data.forEach(property => {
+        const card = document.createElement("div");
+        card.className = "property";
+
+        card.innerHTML = `
+            <div class="property-main">
+                <img 
+                    src="${property.image_front || 'property-front.jpg'}"
+                    alt="${property.name}"
+                >
+
+                <div class="price">
+                    ₹${Number(property.price).toLocaleString("en-IN")}
+                </div>
+            </div>
+
+            <div class="details">
+                <h3>${property.name}</h3>
+
+                <div class="location">
+                    📍 ${property.location}
+                </div>
+
+                <p>
+                    ${property.description || ""}
+                </p>
+
+                <button 
+                    class="btn" 
+                    onclick="openBooking()"
+                >
+                    Book a Viewing
+                </button>
+
+                <a 
+                    class="btn whatsapp"
+                    style="margin-left:8px"
+                    target="_blank"
+                    href="https://wa.me/917842600640"
+                >
+                    WhatsApp
+                </a>
+            </div>
+        `;
+
+        propertyList.appendChild(card);
+    });
+}
+
+loadProperties();
+</script>
+</body>
+</html>
